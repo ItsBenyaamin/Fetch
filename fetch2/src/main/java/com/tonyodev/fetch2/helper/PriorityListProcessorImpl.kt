@@ -3,7 +3,6 @@ package com.tonyodev.fetch2.helper
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.content.IntentFilter
 import com.tonyodev.fetch2.*
 import com.tonyodev.fetch2.downloader.DownloadManager
 import com.tonyodev.fetch2core.HandlerWrapper
@@ -12,6 +11,7 @@ import com.tonyodev.fetch2.provider.NetworkInfoProvider
 import com.tonyodev.fetch2.util.DEFAULT_PRIORITY_QUEUE_INTERVAL_IN_MILLISECONDS
 import com.tonyodev.fetch2.NetworkType
 import com.tonyodev.fetch2.fetch.ListenerCoordinator
+import com.tonyodev.fetch2.util.registerBroadcastReceiver
 import com.tonyodev.fetch2core.Logger
 import com.tonyodev.fetch2core.isFetchFileServerUrl
 import java.util.concurrent.TimeUnit
@@ -68,7 +68,10 @@ class PriorityListProcessorImpl constructor(private val handlerWrapper: HandlerW
 
     init {
         networkInfoProvider.registerNetworkChangeListener(networkChangeListener)
-        context.registerReceiver(priorityBackoffResetReceiver, IntentFilter(ACTION_QUEUE_BACKOFF_RESET))
+        context.registerBroadcastReceiver(
+            priorityBackoffResetReceiver,
+            ACTION_QUEUE_BACKOFF_RESET
+        )
     }
 
     private val priorityIteratorRunnable = Runnable {

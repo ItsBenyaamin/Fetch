@@ -5,7 +5,6 @@ import android.app.*
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.content.IntentFilter
 import android.net.Uri
 import android.os.Build
 import androidx.core.app.NotificationCompat
@@ -14,6 +13,7 @@ import com.tonyodev.fetch2.DownloadNotification.ActionType.*
 import com.tonyodev.fetch2.util.DEFAULT_NOTIFICATION_TIMEOUT_AFTER
 import com.tonyodev.fetch2.util.DEFAULT_NOTIFICATION_TIMEOUT_AFTER_RESET
 import com.tonyodev.fetch2.util.onDownloadNotificationActionTriggered
+import com.tonyodev.fetch2.util.registerBroadcastReceiver
 
 /**
  * The default notification manager class for Fetch. This manager supports both single
@@ -53,7 +53,10 @@ abstract class DefaultFetchNotificationManager(context: Context) : FetchNotifica
     }
 
     override fun registerBroadcastReceiver() {
-        context.registerReceiver(broadcastReceiver, IntentFilter(notificationManagerAction))
+        context.registerBroadcastReceiver(
+            broadcastReceiver,
+            notificationManagerAction
+        )
     }
 
     override fun unregisterBroadcastReceiver() {

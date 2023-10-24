@@ -3,7 +3,6 @@ package com.tonyodev.fetch2.provider
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.content.IntentFilter
 import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
@@ -51,13 +50,6 @@ class NetworkInfoProvider constructor(private val context: Context,
             }
             this.networkCallback = networkCallback
             connectivityManager.registerNetworkCallback(networkRequest, networkCallback)
-        } else {
-            try {
-                context.registerReceiver(networkChangeBroadcastReceiver, IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
-                broadcastRegistered = true
-            } catch (e: Exception) {
-
-            }
         }
     }
 

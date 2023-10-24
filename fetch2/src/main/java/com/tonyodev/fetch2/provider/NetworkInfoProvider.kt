@@ -7,7 +7,6 @@ import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
 import android.net.NetworkRequest
-import android.os.Build
 import com.tonyodev.fetch2.NetworkType
 import com.tonyodev.fetch2core.isNetworkAvailable
 import com.tonyodev.fetch2core.isOnMeteredConnection
@@ -31,7 +30,7 @@ class NetworkInfoProvider constructor(private val context: Context,
     private var networkCallback: Any? = null
 
     init {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && connectivityManager != null) {
+        if (connectivityManager != null) {
             val networkRequest = NetworkRequest.Builder()
                     .addTransportType(NetworkCapabilities.TRANSPORT_CELLULAR)
                     .addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
@@ -79,11 +78,9 @@ class NetworkInfoProvider constructor(private val context: Context,
             if (broadcastRegistered) {
                 try {
                     context.unregisterReceiver(networkChangeBroadcastReceiver)
-                } catch (e: Exception) {
-
-                }
+                } catch (e: Exception) { e.printStackTrace() }
             }
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && connectivityManager != null) {
+            if (connectivityManager != null) {
                 val networkCallback = this.networkCallback
                 if (networkCallback is ConnectivityManager.NetworkCallback) {
                     connectivityManager.unregisterNetworkCallback(networkCallback)
@@ -121,7 +118,7 @@ class NetworkInfoProvider constructor(private val context: Context,
                     connection.connect()
                     connected = connection.responseCode != -1
                     connection.disconnect()
-                } catch (e: Exception) { }
+                } catch (e: Exception) { e.printStackTrace() }
                 connected
             } else {
                 context.isNetworkAvailable()

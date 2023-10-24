@@ -1,10 +1,7 @@
 apply plugin: 'com.android.library'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-kapt'
 
-//apply plugin: 'com.novoda.bintray-release'
 
 buildscript {
     apply from: '../versions.gradle'
@@ -15,7 +12,6 @@ buildscript {
     dependencies {
         classpath "com.android.tools.build:gradle:$gradle_tools_version"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-//        classpath "com.novoda:bintray-release:$novoda_bintray_version"
     }
 }
 
@@ -44,8 +40,12 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_7
-        targetCompatibility JavaVersion.VERSION_1_7
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = "17"
     }
 
     sourceSets {
@@ -57,20 +57,11 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    api "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    api platform("org.jetbrains.kotlin:kotlin-bom:$kotlin_version")
     testImplementation "junit:junit:$junit_version"
-    androidTestImplementation "com.android.support.test:runner:$test_runner_version"
-    androidTestImplementation "com.android.support.test.espresso:espresso-core:$espresso_version"
+    androidTestImplementation "androidx.test.ext:junit:1.1.5"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
 }
-
-//publish {
-//    userOrg = 'tonyofrancis'
-//    groupId = 'com.tonyodev.fetch2core'
-//    artifactId = 'fetch2core'
-//    publishVersion = library_version
-//    desc = 'Fetch Core Library'
-//    website = 'https://github.com/tonyofrancis/fetch'
-//}
 
 tasks.withType(Javadoc).all {
     enabled = false

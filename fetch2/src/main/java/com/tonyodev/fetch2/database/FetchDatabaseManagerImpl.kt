@@ -1,13 +1,13 @@
 package com.tonyodev.fetch2.database
 
-import android.arch.persistence.db.SupportSQLiteDatabase
-import android.arch.persistence.room.Room
 import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteException
+import androidx.room.Room
+import androidx.sqlite.db.SupportSQLiteDatabase
 import com.tonyodev.fetch2.PrioritySort
 import com.tonyodev.fetch2.Status
-import com.tonyodev.fetch2.database.migration.Migration
+import com.tonyodev.fetch2.database.migration.MyMigration
 import com.tonyodev.fetch2.exception.FetchException
 import com.tonyodev.fetch2.fetch.LiveSettings
 import com.tonyodev.fetch2.util.defaultNoError
@@ -19,7 +19,7 @@ import com.tonyodev.fetch2core.Logger
 class FetchDatabaseManagerImpl constructor(context: Context,
                                            private val namespace: String,
                                            override val logger: Logger,
-                                           migrations: Array<Migration>,
+                                           migrations: Array<MyMigration>,
                                            private val liveSettings: LiveSettings,
                                            private val fileExistChecksEnabled: Boolean,
                                            private val defaultStorageResolver: DefaultStorageResolver) : FetchDatabaseManager<DownloadInfo> {

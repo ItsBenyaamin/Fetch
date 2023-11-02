@@ -1,7 +1,4 @@
 
-[![Build Status](https://travis-ci.org/tonyofrancis/Fetch.svg?branch=v2)](https://travis-ci.org/tonyofrancis/Fetch)
-[ ![Download](https://api.bintray.com/packages/tonyofrancis/maven/fetch2/images/download.svg?version=3.0.12) ](https://bintray.com/tonyofrancis/maven/fetch2/3.0.12/link)
-[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Android%20Networking-blue.svg?style=flat)](https://android-arsenal.com/details/1/5196)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/tonyofrancis/Fetch/blob/master/LICENSE)
 
 ![ScreenShot](https://github.com/tonyofrancis/Fetch/blob/v2/full_logo.png)
@@ -55,12 +52,12 @@ How to use Fetch
 
 Using Fetch is easy! Just add the Gradle dependency to your application's build.gradle file.
 
+Gradle:
 ```java
-implementation "com.tonyodev.fetch2:fetch2:3.0.12"
-```
-Androidx use:
-```java
-implementation "androidx.tonyodev.fetch2:xfetch2:3.1.6"
+val fetchVersion = "v3.2"
+implementation "com.github.graymind75.Fetch:fetch2:$fetchVersion"
+implementation "com.github.graymind75.Fetch:fetch2core:$fetchVersion"
+implementation "com.github.graymind75.Fetch:fetch2okhttp:$fetchVersion"
 ```
 
 Next, get an instance of Fetch and request a download.

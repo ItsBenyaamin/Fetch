@@ -8,7 +8,7 @@ import android.os.Build
 fun Context.registerBroadcastReceiver(broadcastReceiver: BroadcastReceiver, action: String) {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
         val flags = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
-            Context.RECEIVER_NOT_EXPORTED
+            Context.RECEIVER_EXPORTED
         else 0
         registerReceiver(
             broadcastReceiver,

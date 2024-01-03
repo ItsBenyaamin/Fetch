@@ -54,7 +54,7 @@ Using Fetch is easy! Just add the Gradle dependency to your application's build.
 
 Gradle:
 ```java
-val fetchVersion = "v3.2"
+val fetchVersion = "v3.3"
 implementation "com.github.graymind75.Fetch:fetch2:$fetchVersion"
 implementation "com.github.graymind75.Fetch:fetch2core:$fetchVersion"
 implementation "com.github.graymind75.Fetch:fetch2okhttp:$fetchVersion"
